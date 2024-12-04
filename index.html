@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>--PasswordGenrator--</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="container">
+    <h1>Genrate a <br><span>Random Password</span></h1>
+    
+
+    <div class="display"> 
+    
+       <input type="text" id="Password" placeholder="Password">
+       <img src="images/copy.png" id="copybtn" onclick="copyPassword()">
+
+
+    </div>
+
+   <button onclick="createPassword()"> <img src="images/generate.png">Genrate Password</button>
+
+
+        
+
+      <div id="customAlert" class="alert-box">
+
+        <div class="alert-content">
+
+          <h2>Your Password copied</h2>
+           <p id="customtext">This is custom alert</p>
+ 
+         <button id="confirmation-btn">Ok</button>
+        </div>
+
+
+      </div>
+
+  </div>
+  
+
+
+  <script>
+
+    
+
+   const passwordbox = document.getElementById("Password");
+
+   
+
+   const length =12;
+
+   const uppercase = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+
+   const lowercase ="abcdefghijklmnopqrstuvxyz";
+
+   const number = "123456789";
+
+   const specialchar = "!@#$%^&*"
+
+
+   function createPassword(){
+
+
+    let password =" ";
+
+    password +=uppercase[Math.floor(Math.random()*uppercase.length)]
+    password +=lowercase[Math.floor(Math.random()*lowercase.length)]
+    password +=number[Math.floor(Math.random()*number.length)]
+    password +=specialchar[Math.floor(Math.random()*specialchar.length)]
+
+    let mixpassword = uppercase+lowercase+number+specialchar;
+
+    while(length>password.length){
+
+      password +=mixpassword[Math.floor(Math.random()*mixpassword.length)]
+
+
+    }
+ 
+    passwordbox.value=password;
+
+    console.log(password);
+
+   }
+    
+
+   function copyPassword(){
+
+    passwordbox.select();
+
+    let a = passwordbox.value
+    
+   document.execCommand("copy");
+
+    
+
+
+   }
+
+
+   const copybtn = document.getElementById("copybtn");
+    const customAlert = document.getElementById("customAlert");
+
+    const confirmationbtn= document.getElementById("customAlert");
+
+    const customtext = document.getElementById("customtext")
+
+    copybtn.addEventListener('click', function(){
+
+
+      customAlert.style.display ='flex';
+      customtext.innerText=passwordbox.value;
+
+    });
+
+
+    confirmationbtn.addEventListener('click', function(){
+
+      customAlert.style.display ='none';
+
+
+    })
+
+
+ 
+
+  </script>
+</body>
+</html>
